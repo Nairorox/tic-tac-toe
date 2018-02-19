@@ -131,7 +131,7 @@ class Game{
 			this.tour += 1;
 			this.searchForWinners();
 			this.getNextPlayer();
-			if(this.ai){
+			if(this.ai && !this.finished){
 				ai.makeAMove();
 				this.searchForWinners();
 				this.tour += 1;
