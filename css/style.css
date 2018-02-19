@@ -32,7 +32,7 @@ h1{
 	text-align:center;
 	border:solid 1px;
 	width: 100%;
-	transform:translate(0px, -120px);
+	transform:translate(0px, -150px);
 	transition: transform 1s;
 	font-size:25px;
 	background-color:#d9edf7;
@@ -41,5 +41,5 @@ h1{
 }
 
 .show{
-	transform:translate(0px, -84px) scale(0.9);;
+	transform:translate(0px, -104px) scale(0.9);;
 }

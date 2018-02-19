@@ -1,5 +1,4 @@
 const main = document.querySelector('main');
-const infoLabel = document.querySelector('.infoLabel')
 class gameField{
 	constructor(parent, parentDOM){
 		this.parentDOM = parent;
@@ -37,6 +36,8 @@ class Game{
 		this.domEl = domEl;
 		this.currentPlayer = null;
 		this.tour = 0;
+		/*AI MODE */
+		this.ai = true;
 	}
 
 	clearFields(){
@@ -103,6 +104,7 @@ class Game{
 		this.createFields();
 		this.tour = 0;
 		this.currentPlayer = this.players[0];
+		console.log(this.currentPlayer);
 		this.gotWinner = false;
 	}
 
@@ -124,34 +126,24 @@ class Game{
 		if(this.finished){
 			this.restartGame();
 		}
-		if(dom.innerText === '' && !this.finished){
+		else if(dom.innerText === '' && !this.finished){
 			dom.innerText = this.currentPlayer.mark;
 			this.tour += 1;
 			this.searchForWinners();
 			this.getNextPlayer();
+			if(this.ai){
+				ai.makeAMove();
+				this.searchForWinners();
+				this.tour += 1;
+				this.getNextPlayer();
+			}
 		}
-		
 	}
 }
 
 game = new Game(main);
 
 new Player(game, 'X');
-new Player(game, 'O');
+//new Player(game, 'O');
 
 game.createFields();
-
-document.addEventListener('click', function(){
-	if(game.finished){
-		if(game.gotWinner){
-			infoLabel.innerText = `${game.gotWinner} won`
-		}
-		else{
-			infoLabel.innerText = 'Draw';
-		}
-		infoLabel.classList.add('show')
-	}
-	else{
-		infoLabel.classList.remove('show')
-	}
-})
